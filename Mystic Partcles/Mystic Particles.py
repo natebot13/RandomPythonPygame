@@ -10,13 +10,13 @@ def randomColor(R = None, G = None, B = None, Rmax = 255, Rmin = 0, Bmax = 255, 
     return (R, G, B)
 
 class Particle():
-    def __init__(self, (x,y), radius=None, color=None):
+    def __init__(self, (x,y), radius=None, color=None, hilf=False):
         self.x = x
         self.y = y
         self.xvel = random.randint(-20, 20)
         self.radius = radius
         self.image = pygame.image.load('ball.png')
-        if random.randint(0,1000) == 0:
+        if random.randint(0,1000) == 0 or hilf:
             self.image = pygame.image.load('hilf.png')
         if self.radius == None:
             self.radius = random.randint(1,5)
@@ -57,6 +57,9 @@ def main():
                 if event.key == pygame.K_ESCAPE:
                     pygame.quit()
                     sys.exit()
+                if event.key == pygame.K_SPACE:
+                    particles.append(Particle((random.randint(0,WIDTH), HEIGHT), hilf=True))
+
         if counter == 0:
             particles.append(Particle((random.randint(0,WIDTH), HEIGHT)))
             counter = 0
