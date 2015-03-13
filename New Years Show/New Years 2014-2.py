@@ -115,7 +115,7 @@ class Photo():
 def main():
 	
 	beginDrop = 30
-	finalDate = datetime.datetime(2014, 3, 15, 13, 33)
+	finalDate = datetime.datetime(2015, 1, 1, 0, 13)
 	expNum = 10
 	
 	SCREEN = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
@@ -134,7 +134,7 @@ def main():
 	
 	fontfile = pygame.font.get_default_font()
 	FONT = pygame.font.Font(fontfile, 64)
-	FONT2014 = pygame.font.Font(fontfile, 256)
+	FONT2015 = pygame.font.Font(fontfile, 256)
 	
 	countdownDone = False
 	
@@ -199,7 +199,7 @@ def main():
 		
 		ball.draw(SCREEN, 0, dy)
 		
-		newYear = FONT2014.render("2014", True, randomColor())
+		newYear = FONT2015.render("2015", True, randomColor())
 		SCREEN.blit(newYear, (WIDTH/2-newYear.get_width()/2, HEIGHT/2-newYear.get_height()/2))
 		
 		if waitForPics <= 0:

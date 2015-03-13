@@ -1,4 +1,4 @@
-import pygame, sys, math, random
+import pygame, sys, os, math, random
 
 def randomColor(R = None, G = None, B = None, Rmax = 255, Rmin = 0, Bmax = 255, Bmin = 0, Gmax = 255, Gmin = 0,):
     if R == None:
@@ -15,9 +15,9 @@ class Particle():
         self.y = y
         self.xvel = random.randint(-20, 20)
         self.radius = radius
-        self.image = pygame.image.load('ball.png')
+        self.image = pygame.image.load(os.path.join(os.getcwd(), 'ball.png'))
         if random.randint(0,1000) == 0 or hilf:
-            self.image = pygame.image.load('hilf.png')
+            self.image = pygame.image.load(os.path.join(os.getcwd(), 'hilf.png'))
         if self.radius == None:
             self.radius = random.randint(1,5)
         self.center = (x,y)
