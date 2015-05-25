@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="16" tileheight="16" nextobjectid="1">
+ <tileset firstgid="1" name="blowharderterrain" tilewidth="16" tileheight="16">
+  <image source="../textures/blowharderterrain.png" width="816" height="576"/>
+ </tileset>
+ <tileset firstgid="1837" name="blowharder" tilewidth="16" tileheight="16">
+  <image source="../textures/blowharder.png" width="1856" height="608"/>
+ </tileset>
+ <layer name="Ground" width="16" height="16">
+  <data encoding="base64" compression="zlib">
+   eJzNktENgCAMRAt8qiMZ4ky4jSsRXUmJkFyatuCfHy+xXL3Wk+yI8k84K1hndjb6rqZrPSMzLO/2PAei9LBUEtQT1A3uFYWzgvOvRt7eeQt9zULqaTOj4Y37azp6Sz0lu5VlhjnuQd6rl53EVUEv6ft6dxD/Jd+P73ooOveW5n+9hzwbjRv957XH
+  </data>
+ </layer>
+ <layer name="Middle" width="16" height="16">
+  <data encoding="base64" compression="zlib">
+   eJyVUVEKwjAM7dp6om7/4mH0T1Q8jihFPY0i6oeKeBY1ow1mknTtg8dCkpesL14rNQWuIz2J/0lrV6CLWsxfMtlqEZ7MQ6xIzAHrjtFKvRI2Wu5xQr6J+bcJesTRpHeV7pcwg/45cKF/+xtmxrNS6lWFeELqW4h3wD3R038Yx3gI3xEz9wa5O/Chu++nftWZb0rdjsOH8Vjyr/Xk0HOTkpvVxOtl9KAUqDvDXmvzNCfT1RkbtIOe/Skd8gtWNzmz
+  </data>
+ </layer>
+ <layer name="Tops" width="16" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUkApYWSCYXH1zmBkYLjKSr+8SFJPiTismTDsB2e4F3w==
+  </data>
+ </layer>
+ <layer name="Cliffs" width="16" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUkAqWMlGm7waJ+mmlDwD/EQUr
+  </data>
+ </layer>
+ <layer name="Text" width="16" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFgw3osTEwJALxWSBOBeIzbAPtIvKBPdDttkDMN4T9MJwBAFvZA0g=
+  </data>
+ </layer>
+</map>
