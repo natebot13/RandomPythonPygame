@@ -5,7 +5,7 @@ import EntityManager, Components, Systems
 class Map():
     def __init__(self, texture, colliders, tilesize=(16,16)):
         self.surf = pygame.image.load(os.path.join("textures", texture)).convert_alpha()
-        self.collisionRects = loadColiders(colliders)
+        # self.collisionRects = loadColiders(colliders)
         self.tilesize = tilesize
         w, h = tilesize
         r = self.surf.get_rect()
@@ -28,7 +28,7 @@ class Map():
                         if tilenum >= 0:
                             x = (tilenum % self.xTiles) * self.tilesize[0]
                             y = (tilenum // self.xTiles) * self.tilesize[1]
-                            roomColliders.append(self.collisionRects[tilenum].move(x, y))
+                            # roomColliders.append(self.collisionRects[tilenum].move(x, y))
                             tiles.append(self.surf.subsurface(pygame.Rect((x, y),self.tilesize)))
                         else:
                             tiles.append(None)
@@ -60,8 +60,6 @@ class Room():
                 ypos += 1
                 xpos = 0
 
-class 
-
 if __name__ == "__main__":
     
     pygame.mixer.init()
@@ -78,21 +76,25 @@ if __name__ == "__main__":
     SCREEN = pygame.display.set_mode(SIZE)
     pygame.display.set_caption('Nate\'s RPG')
 
-    m = Map("blowharderterrain.png", "blowhardercolliders.col" TILESIZE)
+    entManager = EntityManager.EntityManager()
+    sysManager = Systems.SystemsManager(entManager, SCREEN)
+    ID = entManager.newEntity()
+    entManager.addComponentToEntity(ID, Components.Position(100, 100))
+    entManager.addComponentToEntity(ID, Components.Velocity())
+    entManager.addComponentToEntity(ID, Components.Renderable('boy/boy_blue.png'))
+    entManager.addComponentToEntity(ID, Components.Controllable([pygame.K_RIGHT, pygame.K_UP, pygame.K_LEFT, pygame.K_DOWN]))
+
+    m = Map("blowharderterrain.png", "blowhardercolliders.col", TILESIZE)
     room = m.loadRoom("titlescreen")
-    room.addCharacter("")
+    # room.addCharacter("")
     smallscreen = pygame.Surface(SMALLSIZE)
 
     while True:
         
-        for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_ESCAPE:
-                    pygame.quit()
-                    sys.exit()
-        
         SCREEN.fill((0, 0, 0))
         room.draw(smallscreen)
         pygame.transform.scale(smallscreen, SCREEN.get_rect().size, SCREEN)
+        sysManager.runSystems(CLOCK.get_time())
+        sysManager.endStep()
         pygame.display.update()
         CLOCK.tick(FPS)

@@ -1,4 +1,5 @@
 import pygame
+import os
 
 class Component:
     def CID(self):
@@ -11,7 +12,7 @@ class Position(Component):
     
     @property
     def xy(self):
-        return (self.x,self.y)
+        return (self.x, self.y)
 
 class Velocity(Component):
     def __init__(self, speed=5):
@@ -20,16 +21,35 @@ class Velocity(Component):
         self.angle = 0
 
 class Renderable(Component):
-    def __init__(self, filename, multidir=True):
+    def __init__(self, filename, spritesize = (16, 16), animation_pattern = (0, 1, 0, 2), animation_rate = 1):
+        self.t = 0.0
+        self.spritesize = spritesize
+        self.pattern = animation_pattern
+        self.rate = (1 / animation_rate) * 1000
+        w, h = spritesize
+        image = pygame.image.load(os.path.join('textures', filename))
         self.images = {}
-        directions = ['RU', 'LU', 'LD', 'RD']
-        if multidir:
-            for i in range(1,5):
-                self.images[directions[i-1]] = pygame.image.load(filename + '_' + str(i) + '.png')
-        else:
-            image = pygame.image.load(filename + '.png')
-            for i in range(4):
-                self.images[directions[i]] = image
+        numdirections = 4
+        for d in range(numdirections):
+            self.images[d] = image.subsurface(pygame.Rect((0, h * d), (image.get_width(), h)))
+        self.ptrnPos = 0
+        self.frame = animation_pattern[self.ptrnPos]
+
+    def getFrame(self, row, dt):
+        self.t += dt
+        if self.t > self.rate:
+            self.t = 0
+            self.ptrnPos += 1
+            if self.ptrnPos == len(self.pattern):
+                self.ptrnPos = 0
+            self.frame = self.pattern[self.ptrnPos]
+        w = self.spritesize[0]
+        return self.images[row].subsurface(pygame.Rect((w * self.frame, 0),(self.spritesize)))
+
+class Controllable(Component):
+    def __init__(self, controls):
+        self.controls = controls
+        self.events = []
 
 class Unique(Component):
     def __init__(self):
