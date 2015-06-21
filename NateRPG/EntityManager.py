@@ -1,21 +1,24 @@
 class EntityManager:
     def __init__(self):
         self.entityMap = {}
+        self.entities = []
         self.usableID = 0
         self.reusableID = []
         
     def newID(self):
-        """Creates or reuses an available ID for and entity"""
-        if len(self.reusableID) > 0:
-            return self.reusableID.pop()
+        """Creates or reuses an available ID for an entity"""
+        if self.reusableID:
+            return self.reusableID.pop(), False
         else:
-            self.usableID+=1
-            return self.usableID-1
+            self.usableID += 1
+            return self.usableID - 1, True
         
     def newEntity(self):
         """Returns the unique ID of a newly created entity"""
-        ID = self.newID()
-        self.entityMap[ID] = {}
+        ID, new = self.newID()
+        if new:
+            self.entities.append(ID)
+            self.entityMap[ID] = {}
         return ID
     
     def getEntity(self, ID):
@@ -23,7 +26,7 @@ class EntityManager:
 
     def deleteEntity(self, ID):
         """Deletes the given entity with this ID"""
-        del self.entityMap[ID]
+        self.entityMap[ID] = {}
         self.reusableID.append(ID)
     
     def addComponentToEntity(self, ID, component):
@@ -37,8 +40,10 @@ class EntityManager:
     
     def allEntities(self):
         """Returns a generator (kinda like a list) that yeilds each entity ID in the master dict"""
-        for entity in self.entityMap:
-            yield entity
+        return self.entities
+
+    def entityFilter(self, components):
+        return [self.entityMap[e] for e in self.entityMap if self.entityHasComponents(e, components)]
 
     def entityHasComponents(self, ID, components):
         """Checks if the entity has all the components given as a list of strings"""

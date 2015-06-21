@@ -6,19 +6,19 @@
  <tileset firstgid="1837" name="blowharder" tilewidth="16" tileheight="16">
   <image source="../textures/blowharder.png" width="1856" height="608"/>
  </tileset>
- <layer name="Ground" width="16" height="16">
+ <layer name="Terrain" width="16" height="16">
   <data encoding="base64" compression="zlib">
-   eJzNktENgCAMRAt8qiMZ4ky4jSsRXUmJkFyatuCfHy+xXL3Wk+yI8k84K1hndjb6rqZrPSMzLO/2PAei9LBUEtQT1A3uFYWzgvOvRt7eeQt9zULqaTOj4Y37azp6Sz0lu5VlhjnuQd6rl53EVUEv6ft6dxD/Jd+P73ooOveW5n+9hzwbjRv957XH
+   eJyNkk0OAiEMhUsZV+qRzKgHcjNzGxMJ9zH4szExHkYINJSm6Cy+DNC+trzBI8Apcil4tpbw2DNyNVlL54+FkDbhWb1gMhQL4qvR00qC0XMc/u/xC4etdmMBpsi2MLH9mu0Jh2290ep9DOYYYHsnqT/YGntHPkpMu7+Ws4+xI9aeI6vd06ecnpe8NuXwt5C82wnPuI+zmB8WeqdxK/Ba2v16b/CFGf4v5Xxy1rOtuntcD4NeW+vPdXbI2hX2deRNT0d8AWdBqdI=
   </data>
  </layer>
- <layer name="Middle" width="16" height="16">
+ <layer name="Entities" width="16" height="16">
   <data encoding="base64" compression="zlib">
-   eJyVUVEKwjAM7dp6om7/4mH0T1Q8jihFPY0i6oeKeBY1ow1mknTtg8dCkpesL14rNQWuIz2J/0lrV6CLWsxfMtlqEZ7MQ6xIzAHrjtFKvRI2Wu5xQr6J+bcJesTRpHeV7pcwg/45cKF/+xtmxrNS6lWFeELqW4h3wD3R038Yx3gI3xEz9wa5O/Chu++nftWZb0rdjsOH8Vjyr/Xk0HOTkpvVxOtl9KAUqDvDXmvzNCfT1RkbtIOe/Skd8gtWNzmz
+   eJxjYCAfGDNRoBkPmEPAXJg8MfYTMgufGlzmm0LF/zGjip9hxlRLDCDGjcigAKi+EIiLkPSZEjAjHUl+MZC9BIiXIokhuyGNgFnXgPLXgfgGmjrk8DKhUdr4jyWMcYUfKExOE4gTUuIM5idCYU1tcI7MdEWMPgB6ChMn
   </data>
  </layer>
  <layer name="Tops" width="16" height="16">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUkApYWSCYXH1zmBkYLjKSr+8SFJPiTismTDsB2e4F3w==
+   eJxjYBgFo2AUkApYWSCYXH1zmBkYLjKSp8+KCaL3EhH6kd0J04cMAK0dBUg=
   </data>
  </layer>
  <layer name="Cliffs" width="16" height="16">

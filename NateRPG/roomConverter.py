@@ -24,6 +24,7 @@ if __name__ == "__main__":
     stringBuffer = ""
     layers = []
     width, height = 0, 0
+    layernames = []
     print("Opening: ", sys.argv[1])
     with open(sys.argv[1]) as f:
         for line in f:
@@ -32,8 +33,12 @@ if __name__ == "__main__":
                 print("making header...")
                 width, height, stringBuffer = header(f)
                 print("Room size:", width, height)
-            if line == "data=\n":
+            if line == "[layer]\n":
+                l = f.readline()
+                layernames.append(l[l.find('=')+1:-1])
+                f.readline()
                 layers.append(layer(f))
+        stringBuffer += ','.join(layernames) + '\n'
     room = zip(*layers)
     x = 1
     for tileArr in room:

@@ -25,8 +25,12 @@ if __name__ == "__main__":
     tilenum = 0
 
     changed = True
+    save = False
+    export = False
     topleft = None
     bottomright = None
+
+    colliders = {}
 
     while True:
         
@@ -48,6 +52,11 @@ if __name__ == "__main__":
                     num = input("Jump to: ")
                     tilenum = int(num)
                     changed = True
+                if event.key == pygame.K_RETURN:
+                    save = True
+                if event.key == pygame.K_s:
+                    export = True
+
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 4:
@@ -77,6 +86,17 @@ if __name__ == "__main__":
         if topleft and bottomright:
             size = ((bottomright[0] + 1) - topleft[0], (bottomright[1] + 1) - topleft[1])
             pygame.draw.rect(tile, (255, 0, 0), pygame.Rect(topleft, size), 1)
+            if save:
+                colliders[tilenum] = topleft + size
+                print("Recorded tile:", tilenum, topleft, bottomright)
+                save = False
+        if export and colliders:
+            filename = sys.argv[1][:sys.argv[1].find('.')]
+            with open(os.path.join('colliders', filename + '.col'), 'w') as f:
+                for num in colliders:
+                    f.write(str(num) + ':' + ','.join([str(s) for s in colliders[num]]) + '\n')
+            print("Exported all tiles!")
+            export = False
 
         SCREEN.fill((255, 255, 255))
         pygame.transform.scale(tile, SCREEN.get_rect().size, SCREEN)
