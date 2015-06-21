@@ -1,4 +1,4 @@
-import pygame, pygame.camera, sys
+import pygame, pygame.camera, sys, os
 import socket, eztext, textrect
 
 from threading import Thread
@@ -79,7 +79,7 @@ if __name__ == "__main__":
     cameras = pygame.camera.list_cameras()
     if len(cameras) > 1:
         print "Looks like you have more than one camera. Which one would you like to use?"
-        cam = int(raw_input("Choose from " + str(cameras) + ":"))
+        cam = int(raw_input("Choose from " + str(cameras) + ": "))
     else:
         cam = pygame.camera.Camera(cameras[0])
     cam.start()
@@ -157,7 +157,7 @@ if __name__ == "__main__":
                         if myID < len(myhistory) - 1:
                             myID += 1
                     if event.key == pygame.K_s:
-                        pygame.image.save(SCREEN, 'board-' + str(theirID) + '-' + str(myID) + '.bmp')
+                        pygame.image.save(SCREEN, os.path.join('screenshots','board-' + str(theirID) + '-' + str(myID) + '.bmp'))
                     if event.key == pygame.K_SPACE:
                         tempimg = cam.get_image()
                     if event.key == pygame.K_f:
