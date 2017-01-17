@@ -8,7 +8,7 @@
  </tileset>
  <layer name="Terrain" width="16" height="16">
   <data encoding="base64" compression="zlib">
-   eJyNkk0OAiEMhUsZV+qRzKgHcjNzGxMJ9zH4szExHkYINJSm6Cy+DNC+trzBI8Apcil4tpbw2DNyNVlL54+FkDbhWb1gMhQL4qvR00qC0XMc/u/xC4etdmMBpsi2MLH9mu0Jh2290ep9DOYYYHsnqT/YGntHPkpMu7+Ws4+xI9aeI6vd06ecnpe8NuXwt5C82wnPuI+zmB8WeqdxK/Ba2v16b/CFGf4v5Xxy1rOtuntcD4NeW+vPdXbI2hX2deRNT0d8AWdBqdI=
+   eJyNkkEOAiEMRaHgSj2SGfVAbsbbmEi4j2EcNybGw1gChFKLzuJlgN9f2g4elDoh14wnaw7VHshNJ285nxdSvBFP8gWdKFpgX4melxO0HOPg/x2/cNB6N0apEdlmRrJfk33BQZtvMPI9GpKmoO2J+w+mai/kLWhS/1LMHrUj1DsHkrvnjzG9WdLcJYa+hTi7HZsZneOZ1a8Wzk5iytBcUn+9N/iEBP2XvD5e68VU3x3X1n7nnkzSZlYL9RmbvCvWfxD8PV/hA5C2qr8=
   </data>
  </layer>
  <layer name="Entities" width="16" height="16">
@@ -18,10 +18,10 @@
  </layer>
  <layer name="Tops" width="16" height="16">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUkApYWSCYXH1zmBkYLjKSp8+KCaL3EhH6kd0J04cMAK0dBUg=
+   eJxjYBjZ4DLTqP6B1D9UASsLBKODOcwMDHOBeB4zfn0gdRcZscsj09j0WTFB9F4iQj+yO2H6kAEA1iMMSg==
   </data>
  </layer>
- <layer name="Cliffs" width="16" height="16">
+ <layer name="Cliffs" width="16" height="16" visible="0">
   <data encoding="base64" compression="zlib">
    eJxjYBgFo2AUkAqWMlGm7waJ+mmlDwD/EQUr
   </data>

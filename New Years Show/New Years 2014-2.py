@@ -115,7 +115,7 @@ class Photo():
 def main():
 	
 	beginDrop = 30
-	finalDate = datetime.datetime(2015, 1, 1, 0, 13)
+	finalDate = datetime.datetime(2015, 9, 19, 20, 54)
 	expNum = 10
 	
 	SCREEN = pygame.display.set_mode((0,0), pygame.FULLSCREEN)

@@ -50,6 +50,9 @@ class Renderable(Component):
         else:
             self.sprite = None
 
+class Top(Component):
+    pass
+
 class Animated(Component):
     def __init__(self, spritewidth = 16, animation_pattern = (0, 1, 0, 2), animation_rate = 7):
         self.active = False
@@ -106,6 +109,19 @@ class Controllable(Component):
 class Movable(Component):
     def __init__(self, controls):
         self.controls = controls
+        self.moveStack = []
+
+    def addMove(self, num):
+        self.moveStack.append(num)
+
+    def removeMove(self, num):
+        self.moveStack = [x for x in self.moveStack if x != num]
+
+    def lastMove(self):
+        return self.moveStack[-1]
+
+    def canMove(self):
+        return bool(self.moveStack)
 
 class Unique(Component):
     def __init__(self):

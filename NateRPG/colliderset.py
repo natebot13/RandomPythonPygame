@@ -2,12 +2,23 @@ import pygame
 import sys
 import os
 
+def loadColliders(self, collidersfile):
+        colliders = {}
+        with open(os.path.join('colliders', collidersfile)) as f:
+            for line in f:
+                numwh = line.split(':')
+                wh = numwh[1].split(',')
+                colliders[int(numwh[0])] = (,)
+                for i in range(len(wh)//4):
+                    colliders[int(numwh[0])] += (int(wh[0]), int(wh[1]), int(wh[2]), int(wh[3]))
+        return colliders
+
 if __name__ == "__main__":
 
     TILESIZE = (16, 16)
     SCALEFACTOR = 30
-    WIDTH = TILESIZE[0] * SCALEFACTOR
-    HEIGHT = TILESIZE[1] * SCALEFACTOR
+    WIDTH = (TILESIZE[0]) * SCALEFACTOR
+    HEIGHT = (TILESIZE[1]) * SCALEFACTOR
     SIZE = (WIDTH,HEIGHT)
     FPS = 30
     CLOCK = pygame.time.Clock()
@@ -30,7 +41,11 @@ if __name__ == "__main__":
     topleft = None
     bottomright = None
 
-    colliders = {}
+    filename = sys.argv[1][:sys.argv[1].find('.')]
+    if os.path.isfile(os.path.join('colliders', filename + '.col')):
+        colliders = loadColliders(filename + '.col')
+    else:
+        colliders = {}
 
     while True:
         
@@ -52,6 +67,10 @@ if __name__ == "__main__":
                     num = input("Jump to: ")
                     tilenum = int(num)
                     changed = True
+                if event.key == pygame.K_d:
+                    del colliders[tilenum]
+                if event.key == pygame.K_i:
+                    print(tilenum)
                 if event.key == pygame.K_RETURN:
                     save = True
                 if event.key == pygame.K_s:
@@ -75,19 +94,28 @@ if __name__ == "__main__":
                     print(bottomright)
 
         if changed:
-            topleft = None
-            bottomright = None
+            try:
+                coords = colliders[tilenum]
+                temprect = pygame.Rect((coords[0], coords[1]), (coords[2]-1, coords[3]-1))
+                topleft, bottomright = temprect.topleft, temprect.bottomright
+                print(topleft, bottomright)
+            except KeyError as e:
+                topleft = None
+                bottomright = None
             changed = False
         x = (tilenum % xTiles) * TILESIZE[0]
         y = (tilenum // xTiles) * TILESIZE[1]
         tile.fill((255,255,255))
-        tile.blit(texture, (0, 0), pygame.Rect((x, y),TILESIZE))
+        tile.blit(texture, (0, 0), pygame.Rect((x, y), TILESIZE))
 
         if topleft and bottomright:
             size = ((bottomright[0] + 1) - topleft[0], (bottomright[1] + 1) - topleft[1])
             pygame.draw.rect(tile, (255, 0, 0), pygame.Rect(topleft, size), 1)
             if save:
-                colliders[tilenum] = topleft + size
+                if tilenum in colliders:
+                    colliders[tilenum] += topleft + size
+                else:
+                    colliders[tilenum] = topleft + size
                 print("Recorded tile:", tilenum, topleft, bottomright)
                 save = False
         if export and colliders:
