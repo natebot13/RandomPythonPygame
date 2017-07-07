@@ -10,8 +10,8 @@ class block(pygame.Rect):
 		super(block, self).__init__(coorddata[0][0],coorddata[0][1],coorddata[1][0],coorddata[1][1])
 		self.removed = False
 		if color == None:
-			self.color = (100,50,0)
-			# self.color = randomColor()
+			#self.color = (100,50,0)
+			self.color = randomColor()
 		else:
 			self.color = color
 
